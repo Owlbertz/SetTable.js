@@ -1,0 +1,68 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700);
+
+body {
+	background-image: url("../img/city_medium.jpg");
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	font-family: "Open Sans Condensed", sans-serif;
+	font-size: 1.1em;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: "Bad Script", cursive;
+}
+
+footer {
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+}
+#background-text,
+#background-text h1,
+#background-text h2,
+#background-text h3 {
+	color: #333;
+	text-shadow: -1px 0 #fafafa, 0 1px #fafafa, 1px 0 #fafafa, 0 -1px #fafafa;
+
+}
+#background-text {
+	position: fixed;
+	top: 20%;
+	width: 100%;
+	max-width: 100%;
+}
+#background-text h1 {
+	font-size: 8em;
+}
+
+.scrolled-out {
+	position:relative;
+	top: 100%;
+	min-height: 100%;
+	z-index: 5;
+}
+
+#text-box {
+	box-shadow: 0px -4px 6px rgba(0,0,0,0.35);
+	background: rgba(250,250,250,0.98);
+	width: 100%;
+	max-width: 100%;
+	color: #333333;
+	padding: 5% 0;
+}
+
+.button.transparent {
+	background: rgba(250,250,250,0.7);
+	border: 1px solid #000;
+	color: #333;
+	text-shadow: none;
+}
+.button.transparent:hover {
+	transition: all 0.3s;
+	background: rgba(250,250,250,0.9);
+}
+.button.transparent:focus {
+	transition: all 0.3s;
+	background: rgba(240,240,240,0.9);
+}
+
+
