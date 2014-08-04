@@ -17,25 +17,80 @@
   <div class="row-fluid">
     <div class="span6">
       <h3>#table-1</h3>
+      <p>
+      Load data via AJAX and apply a first and a last column.
+<pre>
+$('#table-1').setTable({
+ source: exampleJSON,
+ structure: function(rowId) {
+  $(this).prepend($('&lt;td>#'+rowId+'&lt;/td>'));
+  $(this).append($('&lt;td>&lt;a href="/edit/'+rowId+'">Edit&lt;/a>&lt;/td>'));
+ }
+});
+</pre>
+      </p>
       <table id="table-1" class="table table-bordered table-striped table-condensed" setTable>
       </table>
     </div>
     <div class="span6">
       <h3>#table-2</h3>
-      <button id="refresh-btn" class="btn">Refresh</button>
+      <p>
+      Load data in a JavaScript JSON variable and mark the rows based on specific values. Hit refresh and see who switched his company by using a custom event!
+<pre>
+$('#table-2').setTable({
+ structure: function(rowId, values) {
+  if (values.company == "POLARAX") $(this).addClass('success');
+ }
+});
+</pre>
+      </p>
+      <center><button id="refresh-btn" class="btn">Refresh</button></center>
       <hr />
-      <table id="table-2" class="table table-bordered table-striped table-condensed" setTable data-source="example.json">
+      <table id="table-2" class="table table-bordered table-striped table-condensed" setTable data-source="data/example.json">
       </table>
     </div>
   </div>
   <div class="row-fluid">
     <div class="span6">
       <h3>#table-3</h3>
-      <table id="table-3" class="table table-bordered table-striped table-condensed" setTable data-source="example.json">
+      <p>
+      Load data via AJAX and use custom events for a pagination.
+<pre>
+$('#table-3').setTable({
+ source: 'data/example.json',
+ structure: function(rowId) {
+  $(this).prepend($('&lt;td>#'+(rowId)+'&lt;/td>'));
+ },
+ before: function() {
+  $prevBtn = $('&lt;button>Previous page&lt;/button>');
+  $(this).before($prevBtn);
+   $prevBtn.click(function() {
+    $('#table-3').trigger('setTable:prev');
+  });
+  $nextBtn = $('&lt;button>Next page&lt;/button>');
+  $(this).before($nextBtn);
+  $nextBtn.click(function() {
+   $('#table-3').trigger('setTable:next');
+  });
+ }
+});
+</pre>
+      </p>
+      <table id="table-3" class="table table-bordered table-striped table-condensed" setTable data-source="data/example.json">
       </table>
     </div>
     <div class="span6">
       <h3>#table-4</h3>
+      <p>
+      Use a callback function to catch errors - e.g. a bad data source.
+<pre>
+$('#table-4').setTable({
+ fail: function() {
+  $(this).html('&lt;tr>&lt;td>&lt;div class="text-center text-error">Invalid source!&lt;/div>&lt;/td>&lt;/tr>');
+ }
+});
+</pre>
+      </p>
       <table id="table-4" class="table table-bordered table-striped table-condensed" setTable>
       </table>
     </div>
@@ -43,7 +98,7 @@
 </div>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="js/setTable.js"></script>
+<script src="../setTable.js"></script>
 <script>
   var exampleJSON = [
     {
@@ -106,12 +161,12 @@
         $(this).prepend($('<td>#'+(rowId)+'</td>'));
       },
       before: function() {
-        $prevBtn = $('<button id="prev-btn" class="btn">Previous page</button>');
+        $prevBtn = $('<button class="btn">Previous page</button>');
         $(this).before($prevBtn);
         $prevBtn.click(function() {
           $('#table-3').trigger('setTable:prev');
         });
-        $nextBtn = $('<button id="prev-btn" class="btn">Next page</button>');
+        $nextBtn = $('<button class="btn">Next page</button>');
         $(this).before($nextBtn);
         $nextBtn.click(function() {
           $('#table-3').trigger('setTable:next');
@@ -119,10 +174,6 @@
       }
     });
     $('#table-4').setTable({
-      structure: function(rowId) { // (rowId)
-          $(this).prepend($('<td>#'+(rowId)+'</td>'));
-          $(this).append($('<td><a href="/edit/'+rowId+'" class="btn">Edit</a></td>'));
-        },
       fail: function() {
         $(this).html('<tr><td><div class="text-center text-error">Invalid source!</div></td></tr>');
         }
