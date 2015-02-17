@@ -10,7 +10,7 @@ Usage
 
 **Set up SetTable.js for multiple tables:**
 ```
-<table id="table" data-source="example.json" setTable></table>
+<table id="table" data-source="example.json" data-settable></table>
 $(document).setTable();
 ```
 

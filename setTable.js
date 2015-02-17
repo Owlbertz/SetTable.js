@@ -14,7 +14,7 @@
    
 
     if ($(this).is(document)) { //this is called on the document, set all tables
-      $tables = this.find('table[setTable]');   
+      $tables = this.find('table[data-settable]');   
     }
     else { //this is a table
       $tables = this;
