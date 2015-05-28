@@ -2,7 +2,9 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="lib/prism/prism.css" rel="stylesheet" type="text/css"/>
+    <script src="lib/prism/prism.js"></script>
     <title>SetTable.js</title>
 </head>
 <body>
@@ -20,6 +22,7 @@
       <p>
       Load data via AJAX and apply a first and a last column.
 <pre>
+<code class="language-javascript line-numbers">
 $('#table-1').setTable({
  source: exampleJSON,
  structure: function(rowId) {
@@ -27,6 +30,7 @@ $('#table-1').setTable({
   $(this).append($('&lt;td>&lt;a href="/edit/'+rowId+'">Edit&lt;/a>&lt;/td>'));
  }
 });
+</code>
 </pre>
       </p>
       <table id="table-1" class="table table-bordered table-striped table-condensed" setTable>
@@ -37,11 +41,13 @@ $('#table-1').setTable({
       <p>
       Load data in a JavaScript JSON variable and mark the rows based on specific values. Hit refresh and see who switched his company by using a custom event!
 <pre>
+<code class="language-javascript line-numbers">
 $('#table-2').setTable({
  structure: function(rowId, values) {
   if (values.company == "POLARAX") $(this).addClass('success');
  }
 });
+</code>
 </pre>
       </p>
       <center><button id="refresh-btn" class="btn">Refresh</button></center>
@@ -56,6 +62,7 @@ $('#table-2').setTable({
       <p>
       Load data via AJAX and use custom events for a pagination.
 <pre>
+<code class="language-javascript line-numbers">
 $('#table-3').setTable({
  source: 'data/example.json',
  structure: function(rowId) {
@@ -74,6 +81,7 @@ $('#table-3').setTable({
   });
  }
 });
+</code>
 </pre>
       </p>
       <table id="table-3" class="table table-bordered table-striped table-condensed" setTable data-source="data/example.json">
@@ -84,11 +92,13 @@ $('#table-3').setTable({
       <p>
       Use a callback function to catch errors - e.g. a bad data source.
 <pre>
+<code class="language-javascript line-numbers">
 $('#table-4').setTable({
  fail: function() {
   $(this).html('&lt;tr>&lt;td>&lt;div class="text-center text-error">Invalid source!&lt;/div>&lt;/td>&lt;/tr>');
  }
 });
+</code>
 </pre>
       </p>
       <table id="table-4" class="table table-bordered table-striped table-condensed" setTable>
